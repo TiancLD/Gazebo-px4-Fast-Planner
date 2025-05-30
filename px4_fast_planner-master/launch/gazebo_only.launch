@@ -1,0 +1,31 @@
+<launch>
+  <!-- 参数 -->
+  <arg name="x" default="0" />
+  <arg name="y" default="9" />
+  <arg name="z" default="2" />
+  <arg name="R" default="0" />
+  <arg name="P" default="0" />
+  <arg name="Y" default="0" />
+  <arg name="vehicle" default="iris_depth_camera" />
+  <arg name="world" default="$(find px4_fast_planner)/worlds/22.world" />
+  <arg name="sdf" default="$(find px4_fast_planner)/models/$(arg vehicle)/$(arg vehicle).sdf" />
+
+  <!-- 启动 PX4 + Gazebo -->
+  <include file="$(find px4)/launch/posix_sitl.launch">
+    <arg name="x" value="$(arg x)"/>
+    <arg name="y" value="$(arg y)"/>
+    <arg name="z" value="$(arg z)"/>
+    <arg name="R" value="$(arg R)"/>
+    <arg name="P" value="$(arg P)"/>
+    <arg name="Y" value="$(arg Y)"/>
+    <arg name="vehicle" value="$(arg vehicle)"/>
+    <arg name="world" value="$(arg world)"/>
+    <arg name="sdf" value="$(arg sdf)"/>
+  </include>
+
+  <!-- MAVROS -->
+  <include file="$(find px4_fast_planner)/launch/px4.launch">
+    <arg name="fcu_url" value="udp://:14540@localhost:14557" />
+    <arg name="gcs_url" value="" />
+  </include>
+</launch>
