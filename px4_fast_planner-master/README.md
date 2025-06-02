@@ -67,6 +67,13 @@ pose:
     w: 1.0"
 ```
 
+* To take off and hover at 1&nbsp;m when the simulator is running, execute the following
+  helper script which arms the drone, switches to *OFFBOARD* mode and maintains
+  a 1&nbsp;m altitude.
+```sh
+rosrun px4_fast_planner takeoff_hover.py
+```
+
 # Notes
 *TO ADD*
 * Some notes related to tuning parameters of the availabe planners
